@@ -4,9 +4,55 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {StateProvider} from './Components/StateProvider';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const initialState = {
+    count: {
+        quantity: 0
+    },
+    picture: null
+};
+
+const countReducer = (state, action) => {
+    switch (action.type) {
+        case 'increment':
+            return {
+                ...state,
+                quantity: state.quantity + 1
+            };
+        case 'decrement':
+            return {
+                ...state,
+                quantity: state.quantity - 1
+            };
+        default:
+            return state;
+    }
+};
+
+const pictureReducer = (state, action) => {
+    switch (action.type) {
+        case 'picture_add':
+            return action.picture;
+        case 'picture_remove':
+            return null;
+        default:
+            return state;
+    }
+};
+
+const rootReducer = (state, action) => {
+    return {
+        count: countReducer(state.count, action),
+        picture: pictureReducer(state.picture, action)
+    }
+};
+
+ReactDOM.render(
+    <StateProvider initialState={initialState} reducer={rootReducer}>
+        <App/>
+    </StateProvider>,
+    document.getElementById('root'));
+
+
 serviceWorker.unregister();
