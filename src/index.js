@@ -34,8 +34,6 @@ const pictureReducer = (state, action) => {
     switch (action.type) {
         case 'picture_add':
             return action.picture;
-        case 'picture_remove':
-            return null;
         default:
             return state;
     }
