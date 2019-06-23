@@ -173,13 +173,13 @@ export default () => {
                 </thead>
                 <tbody>
                 {state.users.users.map(user => (
-                    <tr key={user.id}>
-                        <td style={{width: '100px'}}>{user.displayId}</td>
+                    <tr key={user._id}>
+                        <td style={{width: '100px'}}>{user._id}</td>
                         <td style={{width: '100px'}}>{user.name}</td>
                         <td style={{width: '100px'}}>{user.age}</td>
                         <td>
-                            <button onClick={() => getUser(user.id)}>Изменить</button>
-                            <button onClick={() => deleteUser(user.id)}>Удалить</button>
+                            <button onClick={() => getUser(user._id)}>Изменить</button>
+                            <button onClick={() => deleteUser(user._id)}>Удалить</button>
                         </td>
                     </tr>
                 ))}
