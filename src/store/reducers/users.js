@@ -48,13 +48,13 @@ export const usersReducer = (state, action) => {
             return {
                 ...usersInitialState,
                 users: state.users
-                    .map(user => user._id !== action.user._id ? user : action.user)
+                    .map(user => user.id !== action.user.id ? user : action.user)
             };
         case DELETE_USER_SUCCESS:
             return {
                 ...usersInitialState,
                 users: state.users
-                    .filter(user => user._id !== action.user._id)
+                    .filter(user => user.id !== action.user.id)
             };
         case GET_USERS_FAILURE:
             return {
